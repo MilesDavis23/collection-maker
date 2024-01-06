@@ -1,0 +1,24 @@
+{
+  "name": "collection-maker",
+  "version": "1.0.0",
+  "description": "-> Simple program for generating collections",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MilesDavis23/collection-maker.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MilesDavis23/collection-maker/issues"
+  },
+  "homepage": "https://github.com/MilesDavis23/collection-maker#readme",
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "jimp": "^0.22.10",
+    "sharp": "^0.33.1"
+  }
+}

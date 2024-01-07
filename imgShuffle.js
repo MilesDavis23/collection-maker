@@ -127,7 +127,7 @@ async function generateTest() {
     return canvas;
   }
 
-  function getRandomImage(layer, layerPath) {
+function getRandomImage(layer, layerPath) {
     const totalWeight = layer.images.reduce((acc, image) => acc + image.weight, 0);
     const randomValue = Math.random() * totalWeight;
 

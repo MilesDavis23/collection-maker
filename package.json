@@ -18,6 +18,7 @@
   "homepage": "https://github.com/MilesDavis23/collection-maker#readme",
   "dependencies": {
     "fs": "^0.0.1-security",
+    "gifwrap": "^0.10.1",
     "jimp": "^0.22.10",
     "sharp": "^0.33.1"
   }

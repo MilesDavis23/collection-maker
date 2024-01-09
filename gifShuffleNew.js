@@ -2,6 +2,7 @@ const Jimp = require("jimp");
 const { GifFrame, GifUtil } = require('gifwrap');
 const fs = require("fs");
 const path = require("path");
+const metaDataMaker = require("./metaDataMaker");
 
 // gifs and their weights:
 const layers = [
@@ -66,8 +67,8 @@ function getRandomImage(layer, layerPath) {
 
 //generate gif
 async function generateGif() {
-    const width = 2040; 
-    const height = 2040;
+    const width = 240; 
+    const height = 240;
 
     let layersFrames = [];
     let prevCanvases = new Array(layers.length).fill(null); // Array to store the previous canvas for each layer
@@ -127,7 +128,7 @@ async function generateGif() {
 }
 
 
-const numberOfPics = 1;
+const numberOfPics = 10;
 
 (async () => {
     const outputFolder = "./outputFolder";
@@ -141,6 +142,8 @@ const numberOfPics = 1;
         const outPutPath = path.join(outputFolder, `shhh_${i + 1}.gif`);
         await GifUtil.write(outPutPath, canvasFrames);
         console.log(`Generated NFT ${i + 1}`);
+        await metaDataMaker(i)
+        console.log(`Generated JSON ${i +  1}`);
     }
 })();
 

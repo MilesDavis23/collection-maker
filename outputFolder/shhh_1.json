@@ -1,0 +1,15 @@
+{
+  "name": "shhh_1",
+  "symbol": "Sh",
+  "description": "A collection of test NFTs. This is the number 1",
+  "image": "shhh_1.gif",
+  "attributes": [],
+  "properties": {
+    "files": [
+      {
+        "uri": "shhh_1.gif",
+        "type": "image/gif"
+      }
+    ]
+  }
+}

@@ -4,6 +4,8 @@
   "description": "-> Simple program for generating collections",
   "main": "index.js",
   "scripts": {
+    "startGif" : "node gifShuffleNew.js",
+    "startImg" : "node imgShuffle.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

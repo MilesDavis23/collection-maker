@@ -84,9 +84,9 @@ async function isLayerStatic(layerFrames) {
 const gifPath = './testInputGif/background/black.gif'; // Replace with your GIF file path
 const outputFolder = './debug';
 
-//logGifFrameDisposalMethods(gifPath)
-    //.then(() => console.log('Finished logging disposal methods'))
-    //.catch(err => console.error(err));
-extractGifFrames(gifPath, outputFolder)
-    .then(() => console.log('All frames extracted'))
+logGifFrameDisposalMethods(gifPath)
+    .then(() => console.log('Finished logging disposal methods'))
     .catch(err => console.error(err));
+//extractGifFrames(gifPath, outputFolder)
+    //.then(() => console.log('All frames extracted'))
+    //.catch(err => console.error(err));

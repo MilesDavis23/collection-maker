@@ -1,5 +1,7 @@
 #Node modules
 node_modules/
+testInputGif/
+outputFolder23
 
 .DS_Store
 .env

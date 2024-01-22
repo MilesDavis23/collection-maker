@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 
 const pieceName = (number) => {
-    return `shhh_${number}`
+    return `Ugly_Pal_${number}`
 }; // name of a single NFT
 
 
@@ -12,15 +12,15 @@ const metaDataMaker = async (ordinal) => {
 
     const metadata = {
         "name" : pieceName(ordinalNumber),
-        "symbol": "Sh",
-        "description" : `A collection of test NFTs. This is the number ${ordinalNumber}`,
-        "image": `${pieceName(ordinalNumber)}.gif`,
+        "symbol": "Ugly Pals",
+        "description" : `A collection of 1111 Ugly Pals on the solana blockchain. This is the number ${ordinalNumber}`,
+        "image": `${pieceName(ordinalNumber)}.png`,
         "attributes": [],
         "properties": {
             "files": [
                 {
-                    "uri": `${pieceName(ordinalNumber)}.gif`,
-                    "type": "image/gif"
+                    "uri": `${pieceName(ordinalNumber)}.png`,
+                    "type": "image/png"
                 }
             ]
         }
@@ -30,7 +30,7 @@ const metaDataMaker = async (ordinal) => {
         fs.mkdirSync(outputFolder, { recursive: true });
     }
 
-    let outputFilePath =  path.join(outputFolder, `shhh_${ordinalNumber}.json`);
+    let outputFilePath =  path.join(outputFolder, `Ugly_Pal_${ordinalNumber}.json`);
     fs.writeFileSync(outputFilePath, JSON.stringify(metadata, null, 2))
 
     console.log(`Metadata for piece #${ordinalNumber} created at: ${outputFilePath}`);

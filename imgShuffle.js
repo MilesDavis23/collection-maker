@@ -1,6 +1,8 @@
 const Jimp = require("jimp");
 const fs = require("fs");
 const path = require("path");
+const crypto = require('crypto');
+const metaDataMaker = require("./metaDataMaker");
 
 const layers = 
 
@@ -11,12 +13,12 @@ const layers =
             {file: "rarebody_2.png", weight: 50},
             {file: "rarebody_1.png", weight: 50},
             {file: "commonbody_2.png", weight: 50},
-            {file: "commonbody_1.png", weight: 20},
-            {file: "backgroundbody.png", weight: 10},
+            {file: "commonbody_1.png", weight: 30},
+            {file: "background_common_1.png", weight: 50},
         ]
     },
     {
-        name: "skin",
+        name: "Skin",
         images: [
             {file: "common_1.png", weight: 20},
             {file: "common_2.png", weight: 20},
@@ -25,7 +27,7 @@ const layers =
             {file: "rare_2.png", weight: 10},
             {file: "superrare_2.png", weight: 5},
             {file: "superrare_1.png", weight: 5},
-            {file: "legendary.png", weight: 1},
+            {file: "legendary.png", weight: 2},
         ]
     },
     {
@@ -35,17 +37,17 @@ const layers =
         ]
     },
     {
-        name: "mouth",
+        name: "Mouth",
         images: [
-            {file: "common_1.png", weight: 50},
-            {file: "common_2.png", weight: 50},
-            {file: "common_3.png", weight: 50},
-            {file: "rare_1.png", weight: 20},
-            {file: "rare_2.png", weight: 10},
+            {file: "mouth_common_1.png", weight: 50},
+            {file: "mouth_common_2.png", weight: 50},
+            {file: "mouth_common_3.png", weight: 50},
+            {file: "mouth_rare_1.png", weight: 20},
+            {file: "mouth_rare_2.png", weight: 10},
         ]
     },
     {
-        name: "eye",
+        name: "Eye",
         images: [
             {file: "common_1.png", weight: 50},
             {file: "common_2.png", weight: 50},
@@ -60,47 +62,51 @@ const layers =
         ]
     },
     {
-        name: "hat",
+        name: "Hat",
         images: [
+            {file: "no_hat.png", weight: 20},
             {file: "common_1.png", weight: 10},
             {file: "common_2.png", weight: 10},
-            {file: "rare_1.png", weight: 20},
+            {file: "rare_1.png", weight: 10},
             {file: "rare_2.png", weight: 10},
             {file: "superrare_2.png", weight: 5},
             {file: "superrare_1.png", weight: 5},
-            {file: "superrare_3.png", weight: 5},
+            {file: "superrare.png", weight: 5},
 
         ]
     },
     {
-        name: "mustache",
+        name: "Mustache",
         images: [
-            {file: "common_1.png", weight: 20},
-            {file: "common_2.png", weight: 20},
-            {file: "common_3.png", weight: 20},
-            {file: "rare_1.png", weight: 20},
-            {file: "rare_2.png", weight: 10},
-            {file: "superrare_2.png", weight: 5},
-            {file: "superrare_1.png", weight: 5},
-            {file: "legendary.png", weight: 1},
+            {file: "mustache_common_1.png", weight: 20},
+            {file: "mustache_common_2.png", weight: 30},
+            {file: "mustache_common_3.png", weight: 20},
+            {file: "mustache_rare_1.png", weight: 20},
+            {file: "mustache_rare_2.png", weight: 10},
+            {file: "mustache_rare_3.png", weight: 10},
+            {file: "mustache_superrare_2.png", weight: 5},
+            {file: "mustache_superrare_1.png", weight: 5},
+            {file: "mustache_legendry.png", weight: 1},
         ]
     },
     {
-        name: "nose",
+        name: "Nose",
         images: [
-            {file: "common_1.png", weight: 20},
-            {file: "common_2.png", weight: 20},
-            {file: "rare_1.png", weight: 20},
-            {file: "rare_2.png", weight: 10},
-            {file: "superrare_2.png", weight: 5},
-            {file: "superrare_1.png", weight: 5},
-            {file: "legendary.png", weight: 1},
-
+            {file: "CommonNose_1.png", weight: 20},
+            {file: "CommonNose_2.png", weight: 20},
+            {file: "CommonNose_3.png", weight: 20},
+            {file: "CommonNose_4.png", weight: 20},
+            {file: "Rare_1.png", weight: 20},
+            {file: "Rare_2.png", weight: 10},
+            {file: "Rare_3.png", weight: 10},
+            {file: "Superrare_2.png", weight: 3},
+            {file: "Superrare_1.png", weight: 3},
         ]
     },
     {
         name: "cig",
         images: [
+            {file: "noCig.png", weight: 6},
             {file: "cig.png", weight: 4},
             {file: "cigar.png", weight: 4},
         ]
@@ -116,7 +122,7 @@ async function generateTest() {
     let canvas = new Jimp(width, height, 0x00000000);
   
     for (const layer of layers) {
-      const layerPath = path.join("./testInput", layer.name);
+      const layerPath = path.join("./testInputImg", layer.name);
       const randomImage = getRandomImage(layer, layerPath);
       console.log(`Selected image for layer '${layer.name}':`, randomImage);
       const image = await Jimp.read(randomImage);
@@ -125,7 +131,7 @@ async function generateTest() {
     }
   
     return canvas;
-  }
+}
 
 function getRandomImage(layer, layerPath) {
     const totalWeight = layer.images.reduce((acc, image) => acc + image.weight, 0);
@@ -140,7 +146,7 @@ function getRandomImage(layer, layerPath) {
     }
 } 
 
-const numberOfPics = 3; // define how many images u want
+const numberOfPics = 1111; // define how many images u want
 const outPut = "./outputFolder";
 
 if (!fs.existsSync(outPut)) {
@@ -150,18 +156,19 @@ if (!fs.existsSync(outPut)) {
 (async () => {
     const imageBuffers = [];
 
-  for (let i = 0; i < numberOfPics; i++) {
-    const nft = await generateTest();
-    const imageBuffer = await nft.getBufferAsync(Jimp.MIME_PNG)
-    await nft.writeAsync(`${outPut}/ugly_pal_${i + 1}.png`);
-    console.log(`Generated NFT ${i + 1}`);
-    imageBuffers.push(imageBuffer)
-  }
+    for (let i = 0; i < numberOfPics; i++) {
+        const nft = await generateTest();
+        const imageBuffer = await nft.getBufferAsync(Jimp.MIME_PNG)
+        await nft.writeAsync(`${outPut}/ugly_pal_${i + 1}.png`);
+        await metaDataMaker(i)
+        console.log(`Generated NFT ${i + 1}`);
 
-  checkUniqueness(imageBuffers);
+        imageBuffers.push(imageBuffer)
+    }
+
+    checkUniqueness(imageBuffers);
 })();
 
-const crypto = require('crypto');
 
 function checkUniqueness(imageBuffers){
     const imageHashes = new Set();
